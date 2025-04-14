@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "723849765799",
+    "project_id": "android-webshop",
+    "storage_bucket": "android-webshop.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723849765799:android:ab1b1a5e1828e3997b4c82",
+        "android_client_info": {
+          "package_name": "hu.sztibor.webshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723849765799-5as685f6ec7qrlsce8pl1d6mqgfe56dr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hu.sztibor.webshop",
+            "certificate_hash": "af621ad3387d2abda959ce8fc9844a89527bc651"
+          }
+        },
+        {
+          "client_id": "723849765799-esusn9jvh8j59uigvj3190sn7btg4tch.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3TquG5nAXPdRSqapwr8qmCuv5QT5jbaw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "723849765799-esusn9jvh8j59uigvj3190sn7btg4tch.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">Számtech Shop</string>
+    <string name="register">Regisztráció</string>
+    <string name="login">Bejelentkezés</string>
+    <string name="email">E-mail</string>
+    <string name="password">Jelszó</string>
+    <string name="no_account">Még nincs fiókod?</string>
+    <string name="name">Név</string>
+    <string name="password_again">Jelszó mégegyszer</string>
+    <string name="phone_number">Telefonszám</string>
+    <string name="cancel">Mégse</string>
+    <string name="guest_login">Bejelentkezés vendégként</string>
+    <string name="home_page">Főoldal</string>
+    <string name="basket">Kosár</string>
+    <string name="user">Felhasználó</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_placeholder">Title</string>
+    <string name="item_placeholder">Leírás</string>
+    <string name="item_info_placeholder">Here is some news</string>
+    <string name="subtitle_detail_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ultrices congue rutrum. Phasellus elementum ipsum ac convallis aliquam. Suspendisse eleifend eros a enim faucibus mollis. Nunc placerat, est vitae vestibulum blandit, dolor diam fringilla tellus, eu euismod mauris neque at neque.</string>
+    <string name="placeholder_product_name">Termék neve</string>
+    <string name="placeholder_item_price">100.000 Ft</string>
+    <string name="placeholder_item_image">Termék képének a helye</string>
+    <string name="profile">Profil</string>
+    <string name="log_out">Kijelentkezés</string>
+
+
+    <string-array name="shopping_item_names">
+        <item>GIGABYTE WINDFORCE GeForce RTX 4060 8GB</item>
+        <item>ASUS TUF Gaming OC GeForce RTX 5070 12GB</item>
+        <item>SAPPHIRE Radeon RX 7800 XT 16GB</item>
+        <item>AMD Ryzen 7 9800X3D 4.70GHz AM5 BOX</item>
+        <item>INTEL Core i7-14700K 3.40GHz LGA-1700 BOX</item>
+        <item>LOGITECH G Pro Wireless fekete</item>
+    </string-array>
+
+    <string-array name="shopping_item_desc">
+        <item>GIGABYTE WINDFORCE GeForce RTX 4060 8GB</item>
+        <item>ASUS TUF Gaming OC GeForce RTX 5070 12GB</item>
+        <item>SAPPHIRE Radeon RX 7800 XT 16GB</item>
+        <item>AMD Ryzen 7 9800X3D 4.70GHz AM5 BOX</item>
+        <item>INTEL Core i7-14700K 3.40GHz LGA-1700 BOX</item>
+        <item>LOGITECH G Pro Wireless fekete</item>
+    </string-array>
+
+    <array name="shopping_item_rates">
+        <item>3.5</item>
+        <item>5</item>
+        <item>4</item>
+        <item>1.5</item>
+        <item>5</item>
+        <item>3</item>
+    </array>
+
+    <array name="shopping_item_images">
+        <item>@drawable/product1</item>
+        <item>@drawable/product2</item>
+        <item>@drawable/product3</item>
+        <item>@drawable/product4</item>
+        <item>@drawable/product5</item>
+        <item>@drawable/product6</item>
+    </array>
+
+    <array name="shopping_item_price">
+        <item>129990</item>
+        <item>379990</item>
+        <item>221900</item>
+        <item>224989</item>
+        <item>144990</item>
+        <item>46590</item>
+    </array>
+
+</resources>
