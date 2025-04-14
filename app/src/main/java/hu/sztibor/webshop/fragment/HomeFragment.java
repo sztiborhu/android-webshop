@@ -50,6 +50,13 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         layout = inflater.inflate(R.layout.fragment_home, container, false);
 
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            gridNumber = 2;
+        } else {
+            gridNumber = 1;
+        }
+
         mRecyclerView = layout.findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), gridNumber));
         mItemList = new ArrayList<>();
@@ -59,12 +66,7 @@ public class HomeFragment extends Fragment {
 
         initializeData();
 
-        int orientation = getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            gridNumber = 2;
-        } else {
-            gridNumber = 1;
-        }
+
 
         return layout;
     }
