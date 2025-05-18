@@ -25,6 +25,13 @@
     <string name="placeholder_item_image">Termék képének a helye</string>
     <string name="profile">Profil</string>
     <string name="log_out">Kijelentkezés</string>
+    <string name="user_edit">Profil szerkesztése</string>
+    <string name="edit">Szerkesztés</string>
+    <string name="orders">Rendelések</string>
+    <string name="into_cart">Kosárba</string>
+    <string name="placeholder_quantity">1 db</string>
+    <string name="order">Rendelés</string>
+    <string name="payments_methods">Fizetési módok</string>
 
 
     <string-array name="shopping_item_names">

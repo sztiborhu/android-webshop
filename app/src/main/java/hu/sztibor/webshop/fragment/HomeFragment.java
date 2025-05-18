@@ -14,9 +14,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 
 import hu.sztibor.webshop.R;
+import hu.sztibor.webshop.Utils;
 import hu.sztibor.webshop.adapter.ProductAdapter;
 import hu.sztibor.webshop.model.Product;
 
@@ -29,8 +36,11 @@ public class HomeFragment extends Fragment {
     private ArrayList<Product> mItemList;
     private ProductAdapter mAdapter;
 
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mItems;
+
     public HomeFragment() {
-        // Required empty public constructor
+
     }
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -47,7 +57,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         layout = inflater.inflate(R.layout.fragment_home, container, false);
 
         int orientation = getResources().getConfiguration().orientation;
@@ -64,7 +73,13 @@ public class HomeFragment extends Fragment {
         mAdapter = new ProductAdapter(mRecyclerView.getContext(), mItemList);
         mRecyclerView.setAdapter(mAdapter);
 
-        initializeData();
+
+        mFirestore = FirebaseFirestore.getInstance();
+        mItems = mFirestore.collection("Products");
+
+
+        queryData();
+        //initializeData();
 
 
 
@@ -84,20 +99,40 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    private void queryData() {
+        mItemList.clear();
+
+        mItems.orderBy("name").limit(10).get().addOnSuccessListener(queryDocumentSnapshots -> {
+           for (QueryDocumentSnapshot snapshot : queryDocumentSnapshots) {
+               Product product = snapshot.toObject(Product.class);
+               mItemList.add(product);
+           }
+
+           if (mItemList.isEmpty()) {
+               initializeData();
+               queryData();
+           }
+
+
+           Log.d("asd", "queryData: " + mItemList.size());
+            mAdapter.notifyDataSetChanged();
+        });
+    }
+
     private void initializeData() {
         String[] itemsList = getResources().getStringArray(R.array.shopping_item_names);
         String[] itemsInfo = getResources().getStringArray(R.array.shopping_item_desc);
         int[] itemsPrice = getResources().getIntArray(R.array.shopping_item_price);
         TypedArray itemsImageResource = getResources().obtainTypedArray(R.array.shopping_item_images);
 
-        mItemList.clear();
+        //mItemList.clear();
         for (int i = 0; i < itemsList.length; i++) {
-            Product product = new Product(itemsList[i], itemsInfo[i], itemsPrice[i], itemsImageResource.getResourceId(i, 0));
-            mItemList.add(product);
+            Product product = new Product(Utils.getRandomId(), itemsList[i], itemsInfo[i], itemsPrice[i], "");
+            mItems.add(product);
         }
         itemsImageResource.recycle();
 
-        mAdapter.notifyDataSetChanged();
+        //mAdapter.notifyDataSetChanged();
 
     }
 }

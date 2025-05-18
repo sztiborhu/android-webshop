@@ -1,5 +1,7 @@
 package hu.sztibor.webshop.fragment;
 
+import static androidx.core.content.PackageManagerCompat.LOG_TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -19,6 +21,7 @@ import java.util.Objects;
 
 import hu.sztibor.webshop.R;
 import hu.sztibor.webshop.activity.MainActivity;
+import hu.sztibor.webshop.activity.ProfileEditActivity;
 import hu.sztibor.webshop.activity.RegisterActivity;
 import hu.sztibor.webshop.activity.ShopActivity;
 
@@ -59,6 +62,10 @@ public class UserFragment extends Fragment {
         layout = inflater.inflate(R.layout.fragment_user, container, false);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
+
+
+        Log.d("asd", "User: " + user);
+        /*
         userEmailTextView = layout.findViewById(R.id.loggedInEmail);
 
         if (user != null && user.getEmail() != null && !user.getEmail().equals("")) {
@@ -68,11 +75,15 @@ public class UserFragment extends Fragment {
             userEmailTextView.setText("A bejelentkezett felhasználó vendég.");
         }
 
-        Log.d("UserFragment", "User: " + user.getEmail());
+        Log.d("UserFragment", "User: " + user.getEmail());*/
         // Inflate the layout for this fragment
         return layout;
 
 
+
+    }
+
+    public void teszt() {
 
     }
 

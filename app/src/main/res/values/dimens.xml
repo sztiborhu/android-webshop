@@ -2,4 +2,5 @@
 <resources>
     <dimen name="default_margin">28dp</dimen>
     <dimen name="side_margin">25sp</dimen>
+    <dimen name="user_list_icon_right">10dp</dimen>
 </resources>

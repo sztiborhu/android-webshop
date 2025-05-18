@@ -84,8 +84,9 @@
                 android:layout_marginBottom="15sp"
                 android:padding="15sp"
                 android:layout_alignParentRight="true"
+                android:onClick="addToCart"
 
-                android:text="Kosárba"
+                android:text="@string/into_cart"
                 android:textSize="18sp"
                 app:icon="@drawable/shopping_basket_24px"
                 app:iconSize="25sp" />

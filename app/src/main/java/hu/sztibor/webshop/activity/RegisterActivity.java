@@ -11,29 +11,41 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 
 import hu.sztibor.webshop.R;
 import hu.sztibor.webshop.Utils;
+import hu.sztibor.webshop.model.Cart;
+import hu.sztibor.webshop.model.CartItem;
+import hu.sztibor.webshop.model.User;
 
 public class RegisterActivity extends AppCompatActivity {
-    private static final String LOG_TAG = MainActivity.class.getName();
-    private static final String PREF_KEY = MainActivity.class.getPackage().toString();
+    private static final String LOG_TAG = RegisterActivity.class.getName();
+    private static final String PREF_KEY = RegisterActivity.class.getPackage().toString();
     private static final int SECRET_KEY = 8789;
 
 
     EditText nameEditText;
     EditText emailEditText;
+    EditText phoneEditText;
     EditText passwordEditText;
     EditText passwordAgainEditText;
     SharedPreferences preferences;
     private FirebaseAuth mAuth;
+
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mUsers;
+    private CollectionReference mCarts;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         int secret_key = getIntent().getIntExtra("SECRET_KEY", 0);
 
-        if (secret_key != 8789) {
+        if (secret_key != SECRET_KEY) {
             finish();
         }
 
@@ -42,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         nameEditText = findViewById(R.id.nameEditText);
         emailEditText = findViewById(R.id.emailEditText);
+        phoneEditText = findViewById(R.id.phoneEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         passwordAgainEditText = findViewById(R.id.passwordAgainEditText);
 
@@ -55,11 +68,15 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        mFirestore = FirebaseFirestore.getInstance();
+        mUsers = mFirestore.collection("Users");
+        mCarts = mFirestore.collection("Carts");
     }
 
     public void onRegister(View view) {
         String name = nameEditText.getText().toString();
         String email = emailEditText.getText().toString();
+        String phone = phoneEditText.getText().toString();
         String password = passwordEditText.getText().toString();
         String passwordAgain = passwordAgainEditText.getText().toString();
 
@@ -71,6 +88,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (email.isEmpty()) {
             errorMessage += "Email megadása kötelező!\n";
+        }
+
+        if (phone.isEmpty()) {
+            errorMessage += "Telefonszám megadása kötelező!\n";
         }
 
         if (password.isEmpty()) {
@@ -95,9 +116,13 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
+                        String userId = mAuth.getCurrentUser().getUid();
+                        User user = new User(userId, name, email, phone);
+                        mUsers.document(userId).set(user);
+                        mCarts.document(userId).set(new Cart(userId, new ArrayList<CartItem>(), 0));
+
                         Log.d("LOG_TAG", "User registered successfully");
                         Toast.makeText(RegisterActivity.this, "Regisztráció sikeres!", Toast.LENGTH_LONG).show();
-                        openShopActivity();
                         finish();
                     } else {
                         Log.d("LOG_TAG", "Registration failed: " + task.getException().getMessage());
@@ -110,11 +135,6 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
-    private void openShopActivity() {
-        Intent intent = new Intent(this, ShopActivity.class);
-        // intent.putExtra("SECRET_KEY", SECRET_KEY);
-        startActivity(intent);
-    }
 
 
 }

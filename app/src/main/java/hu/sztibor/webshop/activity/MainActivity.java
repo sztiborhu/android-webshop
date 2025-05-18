@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences(PREF_KEY, MODE_PRIVATE);
         mAuth = FirebaseAuth.getInstance();
+
+        mAuth.signOut();
     }
 
     public void onLogin(View view) {
@@ -116,9 +118,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void openShopActivity() {
         Intent intent = new Intent(this, ShopActivity.class);
+        intent.putExtra("SECRET_KEY", SECRET_KEY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
-
 
 }
